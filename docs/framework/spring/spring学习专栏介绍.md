@@ -10,5 +10,5 @@
 
 > 点击链接可直接跳转。
 
-- [Spring-Bean容器](./docs/framework/spring/spring-IoC容器.md)
+- [Spring-IoC容器概述](./docs/framework/spring/spring-IoC容器.md)
 
