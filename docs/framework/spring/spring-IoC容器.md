@@ -76,9 +76,37 @@ public class YoungMan {
 private final Map<String, BeanDefinition> beanDefinitionMap = new ConcurrentHashMap<>(256);
 ```
 
-我们可以将ConcurrentHashMap理解为一个线程安全的HashMap，这里简单介绍下HashMap：HashMap是一种基于扰动函数、负载因子、红黑树转换等技术内容，形成的拉链寻址的数据结构，它能让数据更加散列的分布在哈希桶以及碰撞时
+我们可以将ConcurrentHashMap理解为一个线程安全的HashMap，这里简单介绍下HashMap：HashMap是一种基于扰动函数、负载因子、红黑树转换等技术内容，形成的拉链寻址的数据结构，它能让数据更加散列的分布在哈希桶以及碰撞时形成的链表和红黑树。它的数据结构会尽可能最大限度的让整个数据读取的时间复杂度在O(1) ~ O(logn) ~ O(n)之间，当然在极端情况下也会有O(n)链表查找数据较多的情况。
 
-## 二、
+参考资料表示：`10万数据的扰动函数进行寻址验证测试，数据会均匀的散列在各个哈希桶索引上`，所以HashMap非常适合用在Spring Bean的容器实现上。
 
+## 二、BeanFactory
 
+> 我们知道Spring最底层最核心的东西就是Bean工厂--BeanFactory了。这块简单介绍下Spring中的BeanFactory及其子类。
+
+### 类图
+
+先看下BeanFactory顶级接口及其子接口和实现类的类图：
+
+![image-20220709214805927](../../img/image-20220709214805927.png)
+
+### 类介绍
+
+| 类或接口                           | 作用                                                         |
+| :--------------------------------- | :----------------------------------------------------------- |
+| BeanFactory                        | 用于访问Spring Bean接口的根接口                              |
+| ListableBeanFactory                | BeanFactory接口的扩展，可以根据Bean类型查找相关Bean的所有实例 |
+| HierarchicalBeanFactory            | BeanFactory接口的扩展，提供容器继承功能                      |
+| ConfigurableBeanFactory            |                                                              |
+| AutowireCapableBeanFactory         |                                                              |
+| ConfigurableListableBeanFactory    |                                                              |
+| SingletonBeanRegistry              |                                                              |
+| DefaultSingletonBeanRegistry       |                                                              |
+| FactoryBeanRegistrySupport         |                                                              |
+| AbstractBeanFactory                |                                                              |
+| AbstractAutowiredCapableBeanFctory |                                                              |
+| DefaultListableBeanFactory         |                                                              |
+| AliasRegistry                      |                                                              |
+| SimpleAliasRegistry                |                                                              |
+| BeanDefinitionRegistry             |                                                              |
 
