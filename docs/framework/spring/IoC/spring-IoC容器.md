@@ -88,7 +88,7 @@ private final Map<String, BeanDefinition> beanDefinitionMap = new ConcurrentHash
 
 先看下BeanFactory顶级接口及其子接口和实现类的类图：
 
-![image-20220709214805927](../../img/image-20220709214805927.png)
+![image-20220709214805927](../img/BeanFactory-UML.png)
 
 ### 类介绍
 
